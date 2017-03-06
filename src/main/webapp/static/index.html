@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="js/recorder.js"></script>
+<script src="js/Fr.voice.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/record.js"></script>
+<style>
+body {
+	font-size: 10px;
+	text-decoration: none !important;
+	font-family: Verdana;
+}
+
+.button {
+	margin: 0px 5px;
+	padding: 5px 12px;
+	cursor: pointer;
+	outline: none;
+	font-size: 13px;
+	text-decoration: none !important;
+	text-align: center;
+	color: #fff;
+	background-color: #4D90FE;
+	background-image: linear-gradient(top, #4D90FE, #4787ED);
+	background-image: -ms-linear-gradient(top, #4D90FE, #4787ED);
+	background-image: -o-linear-gradient(top, #4D90FE, #4787ED);
+	background-image: linear-gradient(top, #4D90FE, #4787ED);
+	border: 1px solid #4787ED;
+	box-shadow: 0 1px 3px #BFBFBF;
+}
+
+a.button {
+	color: #fff;
+}
+
+.recording {
+	background: rgba(0, 0, 0, 0)
+		radial-gradient(ellipse farthest-corner at center center, #ff0000 0%,
+		#ffffff 75%, #ffffff 100%, #7db9e8 100%) repeat scroll 0 0;
+}
+
+.recordoff {
+	background: #ffffff repeat scroll 0 0;
+}
+</style>
+</head>
+<body>
+	<img id="recordImg" src="img/mic128.png">
+	<div style="border: 1px solid gray;">
+		<div style="margin: 10px;">
+			<b>Record!</b><br> Record your voice for authentication. <br>
+			&nbsp;&nbsp;&nbsp;&nbsp;- Set a user key ("Marco",
+			"Gianni","Ferninando", etc...) for the UserName and click "Upload
+			User" button<br> &nbsp;&nbsp;&nbsp;&nbsp;- Allow the browser to
+			share your microphone with the Web Application<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;- The microphone image with red background
+			indicates that your voice is recording. After 4 seconds the record is
+			stopped.<br> <br> <b>Congratulations, you've recorded
+				your voice</b><br>
+			<!-- 			Problemi con il microfono? <a href="help.html">Clicca qui</a>.<br>-->
+			<br> UserName <input type="text" id="username" /><a
+				class="button" id="getvoicenewuser">Upload User</a>
+		</div>
+	</div>
+	<br>
+	<div style="border: 1px solid gray;">
+		<div style="margin: 10px;">
+			<b>Authentication Test!</b><br> 1. Check the username. <br>
+			&nbsp;&nbsp;&nbsp;&nbsp;- Select the username from the combo box
+			below and click "Get Voice" button. <br>
+			&nbsp;&nbsp;&nbsp;&nbsp;- Allow the browser to share your microphone
+			with the Web Application<br> &nbsp;&nbsp;&nbsp;&nbsp;- The
+			microphone image with red background indicates that your voice is
+			recording. After 4 seconds the record is stopped.<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;- Check the result through the message and the icon below<br> <br> <b>Congratulations, you've recorded
+				your voice</b><br> <!-- Problemi con il microfono? <a
+				href="help.html">Clicca qui</a>. --><br> <select
+				style="float: left" id="userList"></select> <a class="button"
+				id="getvoice">Get Voice</a> <img id="validationMatch"
+				src="img/smilewait.png">
+		</div>
+	</div>
+	<div style="border: 1px solid gray;">
+		<div style="margin: 10px;">
+			<b>Result</b>&nbsp;
+			<div id="output"></div>
+		</div>
+	</div>
+
+</body>
+</html>
