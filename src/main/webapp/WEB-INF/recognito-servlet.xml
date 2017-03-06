@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop 
+       	http://www.springframework.org/schema/aop/spring-aop.xsd
+       	http://www.springframework.org/schema/tx
+       	http://www.springframework.org/schema/tx/spring-tx.xsd
+       	http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+ 		http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<context:annotation-config />
+
+	<mvc:annotation-driven />
+	<mvc:resources mapping="/static/index.html" location="/static/index.html" />
+
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+
+	<bean id="viewJson"
+		class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
+
+	<bean id="RecognitoController" class="com.bitsinharmony.recognito.webapp.RecognitoController">
+		<property name="voice" ref="voiceDb" />
+	</bean>
+	
+	<bean id="voiceDb" class="com.bitsinharmony.recognito.webapp.Voice">
+		<constructor-arg index="0" type="java.lang.String" value="C:/progetti/Blog/.metadata/.plugins/org.eclipse.wst.server.core/tmp9/wtpwebapps/recognito/audio/" />
+	</bean>
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+		<!-- setting maximum upload size -->
+		<property name="maxUploadSize" value="100000000" />
+
+	</bean>
+
+　
+</beans>
