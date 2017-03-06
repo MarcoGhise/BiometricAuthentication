@@ -58,50 +58,6 @@ public class RecognitoController {
 
 	}
 
-	@Deprecated
-	@RequestMapping(method = RequestMethod.POST, value = "/uploadold")
-	public ModelAndView uploadWave(@RequestParam("file") MultipartFile file,
-			HttpServletRequest request) throws IOException,
-			UnsupportedAudioFileException {
-
-		byte[] valueDecoded = file.getBytes();
-
-		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-		Date date = new Date();
-		String today = dateFormat.format(date); // 2013/10/15 16:16:39
-		today = today.replace(":", "_");
-
-		String filePath = request.getServletContext().getRealPath(
-				"/audio/req_" + today + ".wav");
-
-		File sample = new File(filePath);
-
-		FileOutputStream os = new FileOutputStream(sample);
-		os.write(valueDecoded);
-		os.close();
-
-		// Now check if the King is back
-		List<MatchResult<String>> matches = voice.recognito.identify(sample);
-
-		logger.info("");
-		logger.info("****************");
-		logger.info("");
-
-		logger.info("Sample " + filePath);
-
-		StringBuilder sb = new StringBuilder();
-
-		for (MatchResult<String> result : matches) {
-			sb.append("Identified: " + result.getKey() + " distance of "
-					+ result.getDistance() + " with "
-					+ result.getLikelihoodRatio() + "% positive about it...");
-			sb.append("<br>");
-		}
-
-		return new ModelAndView("viewJson", "processed", sb.toString());
-
-	}
-
 	@RequestMapping(method = RequestMethod.POST, value = "/upload")
 	public ModelAndView uploadWave(@RequestParam("file") MultipartFile file,
 			@RequestParam("username") String username,
@@ -154,11 +110,6 @@ public class RecognitoController {
 
 		return new ModelAndView("viewJson", "processed", sb.toString());
 
-	}
-
-	@RequestMapping(method = RequestMethod.GET, value = "/test")
-	public ModelAndView test(HttpServletRequest request) throws IOException {
-		return new ModelAndView("viewJson", "Thread Id", "test");
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/getuserlist")
