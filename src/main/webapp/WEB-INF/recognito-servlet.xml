@@ -29,7 +29,7 @@
 	</bean>
 	
 	<bean id="voiceDb" class="com.bitsinharmony.recognito.webapp.Voice">
-		<constructor-arg index="0" type="java.lang.String" value="C:/progetti/Blog/.metadata/.plugins/org.eclipse.wst.server.core/tmp9/wtpwebapps/recognito/audio/" />
+		<constructor-arg index="0" type="java.lang.String" value="/home/recognito/audio/" />
 	</bean>
 
 	<bean id="multipartResolver"
